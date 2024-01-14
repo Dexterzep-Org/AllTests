@@ -21,6 +21,6 @@ jobs:
      
             sudo ls -rlt ;
             sudo mkdir abc ;
-            sudo cd abc ;
+            cd abc ;
             sudo touch abc{1..5}
             '
