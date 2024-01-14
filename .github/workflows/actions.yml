@@ -18,8 +18,9 @@ jobs:
      - run: chmod 400 private_key
      - run: ls -rlt .
      - run: ssh -o StrictHostKeyChecking=no -i private_key ${{ env.USER }}@${{ env.HOST }} '
-            sudo ls -rlt
-            sudo mkdir abc
-            sudo cd abc
+     
+            sudo ls -rlt &&
+            sudo mkdir abc &&
+            sudo cd abc &&
             sudo touch abc{1..5}
             '
