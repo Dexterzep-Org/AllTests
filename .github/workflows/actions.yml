@@ -2,25 +2,24 @@ name: CI
 on:
   push:
     branches:
-	     - master
+     - master
   workflow_dispatch:
 env:
-	PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-	HOST: ${{ secrets.HOST }}
-	USER: ${{ secrets.USER }}  
+     PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+     HOST: ${{ secrets.HOST }}
+     USER: ${{ secrets.USER }}  
 jobs:
   build:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run a one-line script
         run: ls -rlt $PWD
   deploy:
-	 runs-on: [ubuntu-latest]
-	 steps:
-	   - name: checkout the code
-	     uses: actions/checkout@v3
-	   - name: SSH into the ec2 instance and copy the files
-	     run: |
-		    	echo ${{ env.PRIVATE_KEY }} > private_key && chmod 400 private_key
-		    	ls -rlt $PWD
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout Code
+       uses: actions/checkout@v3
+     - run: echo "${{ env.PRIVATE_KEY }}" > private_key
+     - run: chmod 400 private_key
+     - run: ls -rlt .
