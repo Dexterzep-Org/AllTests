@@ -17,7 +17,7 @@ jobs:
      - run: echo "${{ env.PRIVATE_KEY }}" > private_key
      - run: chmod 400 private_key
      - run: ls -rlt .
-     - run: ssh -o StrictHostKeyChecking=no -i private_key ${{ env.USER }}@${{ HOST }} '
+     - run: ssh -o StrictHostKeyChecking=no -i private_key ${{ env.USER }}@${{ env.HOST }} '
             ls -rlt
             mkdir abc
             cd abc
