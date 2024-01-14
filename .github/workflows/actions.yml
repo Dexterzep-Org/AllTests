@@ -9,12 +9,6 @@ env:
      HOST: ${{ secrets.HOST }}
      USER: ${{ secrets.USER }}  
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run a one-line script
-        run: ls -rlt $PWD
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -23,3 +17,8 @@ jobs:
      - run: echo "${{ env.PRIVATE_KEY }}" > private_key
      - run: chmod 400 private_key
      - run: ls -rlt .
+     - run: ssh -o StrictHostKeyChecking=no -i private_key ${{ env.USER }}@${{ HOST }} '
+            ls -rlt
+            mkdir abc
+            cd abc
+            touch abc{1..5}'
